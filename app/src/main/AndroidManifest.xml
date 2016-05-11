@@ -25,7 +25,16 @@
             android:name=".views.MainActivity"
             android:label="@string/Contacts"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".views.ContactDetailsActivity"
+            android:label="@string/title_activity_contact_details"
+            android:parentActivityName=".views.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="edu.uoc.pec3.android.contactlist.views.MainActivity" />
+        </activity>
     </application>
 
 </manifest>
