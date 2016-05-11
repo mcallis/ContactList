@@ -12,4 +12,10 @@
     tools:context="edu.uoc.pec3.android.contactlist.views.MainActivity"
     tools:showIn="@layout/activity_main">
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"/>
+
 </RelativeLayout>
