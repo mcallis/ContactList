@@ -1,11 +1,23 @@
 package edu.uoc.pec3.android.contactlist.adapters;
 
+import android.content.Context;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
+
+import org.w3c.dom.Text;
 
 import java.util.List;
 
+import edu.uoc.pec3.android.contactlist.R;
 import edu.uoc.pec3.android.contactlist.model.Contact;
 
 /**
@@ -13,31 +25,51 @@ import edu.uoc.pec3.android.contactlist.model.Contact;
  */
 public class ContactsArrayAdapter extends RecyclerView.Adapter<ContactsArrayAdapter.ViewHolder> {
 
-    private List<Contact> mListContacts;
+    private List<Contact> mListContact;
+    private Context mContext;
 
-    public ContactsArrayAdapter(List<Contact> listContacts){
-        this.mListContacts = listContacts;
+    public ContactsArrayAdapter(Context context, List<Contact> listContact){
+        this.mContext = context;
+        this.mListContact = listContact;
     }
 
     @Override
     public ContactsArrayAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return null;
+
+        // create a new view
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.contact_item, parent, false);
+        // set the view's size, margins, paddings and layout parameters
+        // ...
+        ViewHolder pvh = new ViewHolder(v);
+
+        return pvh;
     }
 
     @Override
     public void onBindViewHolder(ContactsArrayAdapter.ViewHolder holder, int position) {
-
+        Contact currentContact = mListContact.get(position);
+        String urlImage = currentContact.getImageUrl();
+        Picasso.with(mContext).load(urlImage).into(holder.image);
+        holder.name.setText(currentContact.getName());
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        if (mListContact == null){
+            return 0;
+        }
+        return mListContact.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public static class ViewHolder extends RecyclerView.ViewHolder{
+
+        public ImageView image;
+        public TextView name;
 
         public ViewHolder(View itemView) {
             super(itemView);
+            image = (ImageView)itemView.findViewById(R.id.image);
+            name = (TextView)itemView.findViewById(R.id.name);
         }
     }
 }
