@@ -17,6 +17,7 @@ import edu.uoc.pec3.android.contactlist.R;
 import edu.uoc.pec3.android.contactlist.adapters.ContactsArrayAdapter;
 import edu.uoc.pec3.android.contactlist.manager.FirebaseContactManager;
 import edu.uoc.pec3.android.contactlist.model.Contact;
+import edu.uoc.pec3.android.contactlist.utils.Alert;
 import edu.uoc.pec3.android.contactlist.utils.RecyclerItemClickListener;
 
 public class MainActivity extends AppCompatActivity {
@@ -44,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         mListContact = FirebaseContactManager.getInstance().getAllContacts();
 
         if (mListContact == null){
-            showAlert("Contact information is not available");
+            Alert.show(this, "Contact information is not available");
         } else {
             mAdapter = new ContactsArrayAdapter(this, mListContact);
             mRecycler.setAdapter(mAdapter);
@@ -69,11 +70,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void showAlert(String message){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage(message);
-        builder.setPositiveButton("Agree", null);
-        builder.show();
-    }
+
 
 }
