@@ -28,7 +28,6 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".views.ContactDetailsActivity"
-            android:label="@string/title_activity_contact_details"
             android:parentActivityName=".views.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
