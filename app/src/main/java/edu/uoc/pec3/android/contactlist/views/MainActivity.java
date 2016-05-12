@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        // Set views
         mRecycler = (RecyclerView)findViewById(R.id.recycler);
         mRecycler.setHasFixedSize(true);
         // Connect the RecyclerView to controller
@@ -42,11 +43,14 @@ public class MainActivity extends AppCompatActivity {
         // Detecting gesture
         mRecycler.addOnItemTouchListener(onRecyclerItemClickListener());
 
+        // Get data
         mListContact = FirebaseContactManager.getInstance().getAllContacts();
 
+        // If list is null show alert
         if (mListContact == null){
             Alert.show(this, "Contact information is not available");
         } else {
+            // Set adapter
             mAdapter = new ContactsArrayAdapter(this, mListContact);
             mRecycler.setAdapter(mAdapter);
         }
@@ -57,7 +61,9 @@ public class MainActivity extends AppCompatActivity {
         return new RecyclerItemClickListener(MainActivity.this, new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
+                // Get contact
                 Contact currentContact = mListContact.get(position);
+                // Intent to Detail
                 showDetail(currentContact.getObjectId());
             }
         });
@@ -65,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void showDetail(String contactID) {
         Intent intent = new Intent(MainActivity.this, ContactDetailsActivity.class);
+        // Set contact id
         intent.putExtra(ContactDetailsActivity.CONTACT_ID, contactID);
         startActivity(intent);
     }

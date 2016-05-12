@@ -44,6 +44,7 @@ public class ContactDetailsActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setHomeAsUpIndicator(getArrow());
 
+        // Set views
         mImage = (CircularImageView)findViewById(R.id.circular_image);
         mNameTxt = (TextView)findViewById(R.id.name);
         mPhoneTxt = (TextView)findViewById(R.id.phone);
@@ -51,23 +52,30 @@ public class ContactDetailsActivity extends AppCompatActivity {
         mCityTxt = (TextView)findViewById(R.id.city);
         mDescTxt = (TextView)findViewById(R.id.description);
 
-
+        // Get current contact details
         mCurrentContact = FirebaseContactManager.getInstance().getContactByObjectId(getIntent().getStringExtra(CONTACT_ID));
 
         if (mCurrentContact == null){
             Alert.show(this, "Contact information is not available");
         } else {
+            // Show data
             showDetails();
         }
     }
 
+    /**
+     * Method to define color of arrow up button
+     * @return
+     */
     private Drawable getArrow() {
         final Drawable upArrow = ContextCompat.getDrawable(this, R.drawable.abc_ic_ab_back_material);
         upArrow.setColorFilter(ContextCompat.getColor(this, android.R.color.white), PorterDuff.Mode.SRC_ATOP);
         return upArrow;
     }
 
+
     private void showDetails() {
+        // Fill views
         Picasso.with(this).load(mCurrentContact.getImageUrl()).into(mImage);
         mNameTxt.setText(mCurrentContact.getName());
         mPhoneTxt.setText(mCurrentContact.getPhone());

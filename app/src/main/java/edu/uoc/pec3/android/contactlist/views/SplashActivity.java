@@ -27,12 +27,14 @@ public class SplashActivity extends AppCompatActivity implements ValueEventListe
     @Override
     protected void onStart() {
         super.onStart();
+        // Get data from server
         FirebaseContactManager.getInstance().getContactFromServer(this);
     }
 
     @Override
     public void onDataChange(DataSnapshot dataSnapshot) {
         for (DataSnapshot contact: dataSnapshot.getChildren()) {
+            // Add contact to hash
             FirebaseContactManager.getInstance().addContactHashMap(contact.getValue(Contact.class));
         }
         startMainActivity();
@@ -44,6 +46,7 @@ public class SplashActivity extends AppCompatActivity implements ValueEventListe
     }
 
     private void startMainActivity() {
+        // To mainActivity
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }

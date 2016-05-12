@@ -38,8 +38,7 @@ public class ContactsArrayAdapter extends RecyclerView.Adapter<ContactsArrayAdap
 
         // create a new view
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.contact_item, parent, false);
-        // set the view's size, margins, paddings and layout parameters
-        // ...
+
         ViewHolder pvh = new ViewHolder(v);
 
         return pvh;
@@ -47,8 +46,11 @@ public class ContactsArrayAdapter extends RecyclerView.Adapter<ContactsArrayAdap
 
     @Override
     public void onBindViewHolder(ContactsArrayAdapter.ViewHolder holder, int position) {
+        // Get contact
         Contact currentContact = mListContact.get(position);
+        // Get url
         String urlImage = currentContact.getImageUrl();
+        // Fill views
         Picasso.with(mContext).load(urlImage).into(holder.image);
         holder.name.setText(currentContact.getName());
     }
