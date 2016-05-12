@@ -3,4 +3,7 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="font_body">16sp</dimen>
+    <dimen name="font_title">22sp</dimen>
+    <dimen name="font_caption">14sp</dimen>
 </resources>
